@@ -56,6 +56,8 @@ const displayResults = (weather) => {
 
 
 const getResults = async (query) => {
+  const modalError = document.querySelector("#error-no-value");
+  const closeError = document.querySelector("#close-error");
   try {
     const response = await fetch(
       `${api.base}weather?q=${query}&appid=${api.key}`
@@ -63,8 +65,6 @@ const getResults = async (query) => {
     const weather = await response.json();
     displayResults(weather);
   } catch (error) {
-    const modalError = document.querySelector("#error-no-value");
-    const closeError = document.querySelector("#close-error");
     modalError.style.display = "block";
     closeError.addEventListener("click", () => {
       modalError.style.display = "none";
